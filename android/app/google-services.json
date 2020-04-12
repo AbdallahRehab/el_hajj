@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "164137614292",
+    "firebase_url": "https://el-hajj.firebaseio.com",
+    "project_id": "el-hajj",
+    "storage_bucket": "el-hajj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164137614292:android:1a9995ae7690c301aff441",
+        "android_client_info": {
+          "package_name": "com.example.elhajj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164137614292-keu32kke493b28epnth6qlfumnmq8is0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcNRwHwnmw2T8v_XjtgcYKSfIevOHCEzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164137614292-keu32kke493b28epnth6qlfumnmq8is0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
