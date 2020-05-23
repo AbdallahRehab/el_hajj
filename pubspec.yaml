@@ -28,7 +28,14 @@ dependencies:
   splashscreen: ^1.2.0
   avatar_glow: ^1.1.0
   beauty_textfield: ^0.0.1
-  cloud_firestore: ^0.13.4+2
+
+  rflutter_alert: ^1.0.3
+  firebase_auth: ^0.16.0
+  provider: ^4.0.5+1
+  flutter_background_geolocation: ^1.7.3
+  fluttertoast: ^4.0.0
+  cloud_firestore: ^0.13.5
+  map_launcher: ^0.4.5
 
 dev_dependencies:
   flutter_test:

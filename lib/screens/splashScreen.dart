@@ -1,3 +1,4 @@
+import 'package:elhajj/screens/home.dart';
 import 'package:flutter/material.dart';
 
 import 'package:splashscreen/splashscreen.dart';
@@ -12,7 +13,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return new SplashScreen(
         seconds: 5,
-        //navigateAfterSeconds: new TabPage(),
+        navigateAfterSeconds: new HomePage(),
         title: Text('We Help Organize the Hajj \nProcess,so be a part of us.',
           style: new TextStyle(
               fontWeight: FontWeight.w900,

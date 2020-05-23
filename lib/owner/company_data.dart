@@ -1,12 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
-class HajjData extends StatefulWidget {
+class CompanyData extends StatefulWidget {
+  final String name,phone,address,docid;
+
+  const CompanyData({Key key, this.name, this.phone, this.address, this.docid}) : super(key: key);
   @override
-  _HajjDataState createState() => _HajjDataState();
+  _CompanyDataState createState() => _CompanyDataState();
 }
 
-class _HajjDataState extends State<HajjData> {
+class _CompanyDataState extends State<CompanyData> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -24,7 +29,7 @@ class _HajjDataState extends State<HajjData> {
                   child: Container(
                     child: Center(
                         child: Text(
-                      "Hajj Data",
+                      "Company Data",
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 42,color: Colors.teal[600] ),
                     )),
@@ -49,38 +54,16 @@ class _HajjDataState extends State<HajjData> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  "Hajj  Name : ",
+                                  "C_Name : ",
                                   style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
                                 Text(
-                                  "Ahmed ",
+                                  widget.name,
                                   style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(
-                                  "Hajj  Phone : ",
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  "01215454",
-                                  style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 23,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
@@ -93,16 +76,38 @@ class _HajjDataState extends State<HajjData> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  "Hajj  N-Id : ",
+                                  "C_Phone : ",
                                   style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
                                 Text(
-                                  "2121241545645",
+                                  widget.phone,
                                   style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  "C_address : ",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  widget.address,
+                                  style: TextStyle(
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
@@ -126,10 +131,16 @@ class _HajjDataState extends State<HajjData> {
                                   splashColor: Colors.teal[500],
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                    child: Text("Massage",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
+                                    child: Text("Approve",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
 
                                   onPressed: () {
                                     //showSnackBar("FlatButton with Color & Shape");
+                                    return Alert(
+                                      context: context,
+                                      title: "Approve Done",
+                                      image: Image.asset("assets/images/success.png"),
+                                    )
+                                        .show();
                                   },
                                 ),
                                 FlatButton(
@@ -141,10 +152,18 @@ class _HajjDataState extends State<HajjData> {
                                   splashColor: Colors.teal[500],
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                  child: Text("Location",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
+                                  child: Text("Delete",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
 
                                   onPressed: () {
                                     //showSnackBar("FlatButton with Color & Shape");
+                                    Firestore.instance.collection("companies").document(widget.docid).delete();
+
+                                    return Alert(
+                                      context: context,
+                                      title: "Delete Done",
+                                      image: Image.asset("assets/images/delete.png"),
+                                    )
+                                        .show();
                                   },
                                 ),
                               ],

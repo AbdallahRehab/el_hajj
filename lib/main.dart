@@ -1,4 +1,7 @@
-import 'package:elhajj/screens/login_hajj.dart';
+import 'package:elhajj/supervisor/admin_page.dart';
+import 'package:elhajj/screens/home.dart';
+import 'package:elhajj/hajj/login_hajj.dart';
+import 'package:elhajj/screens/splashScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -14,7 +17,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: LoginHajj(),
+      home: Splash(),
     );
   }
 }

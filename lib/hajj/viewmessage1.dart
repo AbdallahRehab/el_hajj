@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MessageM extends StatefulWidget {
+class ViewMessage extends StatefulWidget {
+  final String message,name;
+
+  const ViewMessage({Key key, this.message, this.name}) : super(key: key);
   @override
-  _MessageMState createState() => _MessageMState();
+  _ViewMessageState createState() => _ViewMessageState();
 }
 
-class _MessageMState extends State<MessageM> {
+class _ViewMessageState extends State<ViewMessage> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class _MessageMState extends State<MessageM> {
                   child: Container(
                     child: Center(
                         child: Text(
-                      "Message",
+                      "From : ${widget.name}",
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 42,
@@ -36,12 +39,12 @@ class _MessageMState extends State<MessageM> {
                   flex: 2,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(60),
-                      topLeft: Radius.circular(60),
+                      topRight: Radius.circular(200),
+                      topLeft: Radius.circular(200),
                     ),
-                    child: Container(
-                      color: Colors.teal[600],
-                      child: SingleChildScrollView(
+                    child: Center(
+                      child: Container(
+                        color: Colors.teal[600],
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,46 +60,15 @@ class _MessageMState extends State<MessageM> {
                                       padding: EdgeInsets.all(20.0),
                                       child: TextField(
                                         maxLines: 8,
+                                        enabled: false,
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600),
                                         decoration: InputDecoration.collapsed(
-                                            hintText: "Enter your text here"),
+                                            hintText: "this message from ${widget.name} :  ${widget.message}"),
                                       ),
                                     ))),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: <Widget>[
-                                  FlatButton(
-                                    color: Colors.orange[400],
-                                    textColor: Colors.white,
-                                    disabledColor: Colors.grey,
-                                    disabledTextColor: Colors.black,
-                                    padding: EdgeInsets.all(8.0),
-                                    splashColor: Colors.teal[500],
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: Text(
-                                      "Massage",
-                                      style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.white),
-                                    ),
-                                    onPressed: () {
-                                      //showSnackBar("FlatButton with Color & Shape");
-                                    },
-                                  ),
-                                ],
-                              ),
-                            )
+
                           ],
                         ),
                       ),

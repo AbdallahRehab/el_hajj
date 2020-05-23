@@ -1,5 +1,9 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
+import 'package:elhajj/company/login_company.dart';
+import 'package:elhajj/hajj/login_hajj.dart';
+import 'package:elhajj/owner/login_owner.dart';
+import 'package:elhajj/supervisor/login_supervisor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -90,7 +94,8 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Center(
                               child: InkWell(
-                                onTap: () => print('galpy'),
+                                onTap: () =>
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginCompany())),
                                 child: Text(
                                   "Company",
                                   style: TextStyle(
@@ -121,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Center(
                               child: InkWell(
-                                onTap: () => print('galpy'),
+                                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginOwner())),
                                 child: Text(
                                   "Owner",
                                   style: TextStyle(
@@ -162,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Center(
                               child: InkWell(
-                                onTap: () => print('galpy'),
+                                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginHajj())),
                                 child: Text(
                                   "Hajj",
                                   style: TextStyle(
@@ -193,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             child: Center(
                               child: InkWell(
-                                onTap: () => print('galpy'),
+                                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginSupervisoer())),
                                 child: Text(
                                   "Supervisor",
                                   style: TextStyle(

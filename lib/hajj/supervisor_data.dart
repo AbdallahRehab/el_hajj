@@ -1,7 +1,14 @@
+import 'package:elhajj/hajj/message1.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:map_launcher/map_launcher.dart';
 
 class Supervisor extends StatefulWidget {
+  final FirebaseUser user;
+  final String name,phone,company,adminid;
+  final  latitude,longitude;
+  const Supervisor({Key key, this.name, this.phone, this.latitude, this.longitude, this.user, this.company, this.adminid}) : super(key: key);
   @override
   _SupervisorState createState() => _SupervisorState();
 }
@@ -51,14 +58,14 @@ class _SupervisorState extends State<Supervisor> {
                                 Text(
                                   "Supervisor  Name : ",
                                   style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
                                 Text(
-                                  "Ahmed ",
+                                  widget.name,
                                   style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
@@ -73,14 +80,14 @@ class _SupervisorState extends State<Supervisor> {
                                 Text(
                                   "Supervisor  Phone : ",
                                   style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 22,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
                                 Text(
-                                  "01215454",
+                                  widget.phone,
                                   style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
@@ -109,6 +116,7 @@ class _SupervisorState extends State<Supervisor> {
 
                                   onPressed: () {
                                     //showSnackBar("FlatButton with Color & Shape");
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> MessageM(user: widget.user,company: widget.company,adminid: widget.adminid,)));
                                   },
                                 ),
                                 FlatButton(
@@ -124,6 +132,9 @@ class _SupervisorState extends State<Supervisor> {
 
                                   onPressed: () {
                                     //showSnackBar("FlatButton with Color & Shape");
+                                    openMapsSheet(context,double.parse(widget.longitude),double.parse(widget.longitude) );
+                                    setState(() {
+                                    });
                                   },
                                 ),
                               ],
@@ -167,5 +178,54 @@ class _SupervisorState extends State<Supervisor> {
         ),
       ),
     );
+  }
+  openMapsSheet(context, double latitude,double longitude) async {
+    try {
+      //final title = "Shibīn al Kawm";
+      //final description = "Asia's tallest building";
+      //var hospital=hosptail;
+      //final coords = hosptail.coords[1];
+      final coords = Coords(latitude, longitude);
+
+
+
+      print('hhhhhhhhh ${coords.longitude}');
+
+      final availableMaps = await MapLauncher.installedMaps;
+
+      showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Container(
+                child: Wrap(
+                  children: <Widget>[
+                    for (var map in availableMaps)
+                      ListTile(
+                        onTap: () =>
+                            map.showMarker(
+                              coords: coords,
+
+                              //title: title,
+                              //description: description,
+                            ),
+                        title: Text(map.mapName),
+                        leading: Image(
+                          image: map.icon,
+                          height: 30.0,
+                          width: 30.0,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -1,7 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elhajj/company/company_home.dart';
+import 'package:elhajj/company/add_admin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CompanyHome1 extends StatefulWidget {
+  final FirebaseUser user;
+
+  const CompanyHome1({Key key, this.user}) : super(key: key);
   @override
   _CompanyHome1State createState() => _CompanyHome1State();
 }
@@ -12,6 +19,7 @@ class _CompanyHome1State extends State<CompanyHome1> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        //title: Text('fff${widget.user.uid}',style: TextStyle(color: Colors.deepPurple),),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -62,6 +70,7 @@ class _CompanyHome1State extends State<CompanyHome1> {
     );
   }
   Widget FlatButTopAddSupervisor(){
+
     return FlatButton(
 
       color: Colors.teal[800],
@@ -81,6 +90,7 @@ class _CompanyHome1State extends State<CompanyHome1> {
       ),),
       onPressed: () {
 
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpAdmin()));
       },
     );
   }
@@ -104,7 +114,7 @@ class _CompanyHome1State extends State<CompanyHome1> {
           fontSize: 35
       ),),
       onPressed: () {
-
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> CompanyHome()));
       },
     );
   }

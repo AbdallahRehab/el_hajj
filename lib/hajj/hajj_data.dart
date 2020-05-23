@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:map_launcher/map_launcher.dart';
 
-class CompanyData extends StatefulWidget {
+class HajjData extends StatefulWidget {
   @override
-  _CompanyDataState createState() => _CompanyDataState();
+  _HajjDataState createState() => _HajjDataState();
 }
 
-class _CompanyDataState extends State<CompanyData> {
+class _HajjDataState extends State<HajjData> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class _CompanyDataState extends State<CompanyData> {
                   child: Container(
                     child: Center(
                         child: Text(
-                      "Company Data",
+                      "Hajj Data",
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 42,color: Colors.teal[600] ),
                     )),
@@ -49,14 +50,14 @@ class _CompanyDataState extends State<CompanyData> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  "C_Name : ",
+                                  "Hajj  Name : ",
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
                                 Text(
-                                  "Makkah Terval ",
+                                  "Ahmed ",
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w600,
@@ -71,7 +72,7 @@ class _CompanyDataState extends State<CompanyData> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  "C_Phone : ",
+                                  "Hajj  Phone : ",
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w600,
@@ -93,14 +94,14 @@ class _CompanyDataState extends State<CompanyData> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
-                                  "C_address : ",
+                                  "Hajj  N-Id : ",
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black),
                                 ),
                                 Text(
-                                  "Shebin elKom",
+                                  "2121241545645",
                                   style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w600,
@@ -126,7 +127,7 @@ class _CompanyDataState extends State<CompanyData> {
                                   splashColor: Colors.teal[500],
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                    child: Text("Approve",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
+                                    child: Text("Massage",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
 
                                   onPressed: () {
                                     //showSnackBar("FlatButton with Color & Shape");
@@ -141,10 +142,11 @@ class _CompanyDataState extends State<CompanyData> {
                                   splashColor: Colors.teal[500],
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
-                                  child: Text("Delete",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
+                                  child: Text("Location",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,color: Colors.white),),
 
                                   onPressed: () {
                                     //showSnackBar("FlatButton with Color & Shape");
+
                                   },
                                 ),
                               ],
@@ -189,4 +191,5 @@ class _CompanyDataState extends State<CompanyData> {
       ),
     );
   }
+
 }

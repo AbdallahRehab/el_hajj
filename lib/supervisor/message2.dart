@@ -1,15 +1,36 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elhajj/supervisor/service/AuthService.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
-class ViewMessage extends StatefulWidget {
+class MessageM2 extends StatefulWidget {
+  final FirebaseUser user;
+  final String company;
+
+  const MessageM2({Key key, this.user, this.company}) : super(key: key);
   @override
-  _ViewMessageState createState() => _ViewMessageState();
+  _MessageM2State createState() => _MessageM2State();
 }
 
-class _ViewMessageState extends State<ViewMessage> {
+class _MessageM2State extends State<MessageM2> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String name;
+  TextEditingController messageController = new TextEditingController();
+  AuthServiceadmin ser=AuthServiceadmin();
+
   @override
   Widget build(BuildContext context) {
+    String iduser=widget.user.uid;
+    Future<QuerySnapshot> getData=Firestore.instance.collection("admins").where('userid',isEqualTo:iduser).getDocuments()
+        .then((value){
+      value.documents.forEach((result){
+        name=result.data['name'];
+        print(name);
+        print(result.data['name']);
+      });
+    });
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -24,7 +45,7 @@ class _ViewMessageState extends State<ViewMessage> {
                   child: Container(
                     child: Center(
                         child: Text(
-                      "From : Ahmed Ali",
+                      "Message",
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 42,
@@ -36,12 +57,12 @@ class _ViewMessageState extends State<ViewMessage> {
                   flex: 2,
                   child: ClipRRect(
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(200),
-                      topLeft: Radius.circular(200),
+                      topRight: Radius.circular(60),
+                      topLeft: Radius.circular(60),
                     ),
-                    child: Center(
-                      child: Container(
-                        color: Colors.teal[600],
+                    child: Container(
+                      color: Colors.teal[600],
+                      child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,8 +77,8 @@ class _ViewMessageState extends State<ViewMessage> {
                                     child: Padding(
                                       padding: EdgeInsets.all(20.0),
                                       child: TextField(
+                                        controller: messageController,
                                         maxLines: 8,
-                                        enabled: false,
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600),
@@ -65,7 +86,47 @@ class _ViewMessageState extends State<ViewMessage> {
                                             hintText: "Enter your text here"),
                                       ),
                                     ))),
-
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: <Widget>[
+                                  FlatButton(
+                                    color: Colors.orange[400],
+                                    textColor: Colors.white,
+                                    disabledColor: Colors.grey,
+                                    disabledTextColor: Colors.black,
+                                    padding: EdgeInsets.all(8.0),
+                                    splashColor: Colors.teal[500],
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    child: Text(
+                                      "Massage",
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.white),
+                                    ),
+                                    onPressed: () {
+                                      //showSnackBar("FlatButton with Color & Shape");
+                                      String message=messageController.text;
+                                      ser.addnewmessage(widget.user, name, widget.company, message,);
+                                      return Alert(
+                                        context: context,
+                                        title: "Send",
+                                        image: Image.asset("assets/images/success.png"),
+                                      )
+                                          .show();
+                                    },
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),
